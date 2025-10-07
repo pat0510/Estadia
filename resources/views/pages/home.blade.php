@@ -8,7 +8,7 @@
       <div class="row align-items-center g-5">
         <div class="col-lg-6">
           <span class="badge rounded-pill text-bg-primary-subtle mb-3 fw-semibold">
-            Bienestar • Acompañamiento • Emociones
+            Bienestar • Acompañamiento • Emociones0
           </span>
 
           <h1 class="display-4 fw-bold lh-1 mb-3">

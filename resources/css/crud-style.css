@@ -1,0 +1,125 @@
+/* ==============================
+   ESTILOS CRUD ADMIN (MindWare)
+   ============================== */
+
+.table-crud {
+  border-radius: 10px;
+  overflow: hidden;
+  background: #fff;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.08);
+  font-size: 0.95rem;
+}
+
+/* Encabezados */
+.table-crud thead th {
+  background-color: #0d6efd;
+  color: white;
+  font-weight: 600;
+  text-align: center;
+  vertical-align: middle;
+  padding: 12px;
+}
+
+/* Celdas */
+.table-crud td {
+  vertical-align: middle !important;
+  text-align: center;
+  padding: 10px 6px;
+}
+
+/* Filas alternadas */
+.table-crud tbody tr:nth-child(even) {
+  background-color: #f9fbff;
+}
+
+/* Hover */
+.table-crud tbody tr:hover {
+  background-color: #e7f1ff;
+  transition: all 0.2s ease;
+}
+
+/* Botones de acciones */
+.btn-group .btn {
+  border-radius: 6px !important;
+  margin: 0 3px;
+  transition: all 0.2s ease;
+}
+
+.btn-group .btn:hover {
+  transform: scale(1.1);
+  box-shadow: 0 0 6px rgba(0, 0, 0, 0.2);
+}
+
+/* Tooltip Bootstrap */
+.tooltip-inner {
+  background-color: #0d6efd !important;
+  color: #fff;
+  font-size: 0.8rem;
+  padding: 6px 10px;
+  border-radius: 6px;
+}
+
+/* Footer / Paginación */
+.card-footer {
+  background: #f1f4ff;
+  border-top: 1px solid #e2e6f0;
+}
+
+.card-footer .pagination .page-link {
+  color: #0d6efd;
+  border: none;
+}
+
+.card-footer .pagination .page-item.active .page-link {
+  background-color: #0d6efd;
+  color: white;
+  border-radius: 6px;
+}
+
+
+/* ======== Botones de acción CRUD ======== */
+.btn-action {
+  font-size: 1rem;              /* Tamaño de icono/texto */
+  padding: 8px 14px;            /* Tamaño del botón */
+  border-radius: 8px !important;
+  margin: 0 4px;
+  transition: all 0.2s ease;
+}
+
+.btn-action i {
+  font-size: 1.1rem;
+  vertical-align: middle;
+}
+
+.btn-action:hover {
+  transform: scale(1.12);
+  box-shadow: 0 0 8px rgba(0, 0, 0, 0.2);
+}
+
+/* Colores suaves */
+.btn-outline-info {
+  border-color: #0dcaf0;
+  color: #0dcaf0;
+}
+.btn-outline-info:hover {
+  background-color: #0dcaf0;
+  color: #fff;
+}
+
+.btn-outline-warning {
+  border-color: #ffc107;
+  color: #ffc107;
+}
+.btn-outline-warning:hover {
+  background-color: #ffc107;
+  color: #fff;
+}
+
+.btn-outline-danger {
+  border-color: #dc3545;
+  color: #dc3545;
+}
+.btn-outline-danger:hover {
+  background-color: #dc3545;
+  color: #fff;
+}

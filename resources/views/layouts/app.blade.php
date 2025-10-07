@@ -7,6 +7,8 @@
 
   {{-- Carga de CSS y JS con Vite --}}
   @vite(['resources/css/app.css','resources/js/app.js'])
+  <link href="{{ asset('css/crud-style.css') }}" rel="stylesheet">
+
 </head>
 <body class="bg-light">
 
@@ -37,6 +39,10 @@
   <main>
     @yield('content')
   </main>
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+  @stack('scripts')
+  </body>
+
 
 </body>
 </html>
