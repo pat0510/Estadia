@@ -123,3 +123,45 @@
   background-color: #dc3545;
   color: #fff;
 }
+
+
+/* ===== Ficha de usuario (detalle) ===== */
+.card {
+  border-radius: 14px;
+}
+
+.card-header {
+  background: linear-gradient(90deg, #85b0df, #7577eb);
+}
+
+.info-box {
+  background: #ffffff;
+  border-radius: 10px;
+  padding: 15px 18px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.info-box:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.08);
+}
+
+.info-box h6 {
+  font-size: 0.9rem;
+  font-weight: 500;
+}
+
+.info-box p {
+  font-size: 1rem;
+  margin: 0;
+}
+
+.btn {
+  border-radius: 8px !important;
+  font-weight: 500;
+}
+
+.btn i {
+  vertical-align: middle;
+}

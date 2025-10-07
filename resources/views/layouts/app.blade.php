@@ -1,4 +1,4 @@
-<!doctype html>
+ <!doctype html>
 <html lang="es">
 <head>
   <meta charset="utf-8">
@@ -7,7 +7,8 @@
 
   {{-- Carga de CSS y JS con Vite --}}
   @vite(['resources/css/app.css','resources/js/app.js'])
-  <link href="{{ asset('css/crud-style.css') }}" rel="stylesheet">
+
+   <link rel="stylesheet" href="{{ asset('css/crud-style.css') }}">
 
 </head>
 <body class="bg-light">
@@ -41,6 +42,18 @@
   </main>
   <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
   @stack('scripts')
+  <!-- AOS CSS -->
+<link href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" rel="stylesheet">
+<!-- AOS JS -->
+<script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
+<script>
+  AOS.init({
+    duration: 900,
+    once: true,
+    offset: 120,
+  });
+</script>
+
   </body>
 
 

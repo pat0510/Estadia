@@ -82,6 +82,12 @@ class UsuarioController extends Controller
         return redirect()->route('admin.usuarios.index')->with('success', 'Usuario actualizado correctamente.');
     }
 
+    public function show($id)
+    {
+        $usuario = \App\Models\Usuario::findOrFail($id); // usa tu PK
+        return view('admin.usuarios.show', compact('usuario'));
+    }
+
     public function destroy($id)
     {
         Usuario::destroy($id);

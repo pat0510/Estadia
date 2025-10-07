@@ -22,3 +22,7 @@ Route::get('/', function () {
 Route::prefix('admin')->name('admin.')->group(function () {
     Route::resource('usuarios', UsuarioController::class);
 });
+
+Route::get('/admin/dashboard', function () {
+    return view('admin.dashboard');
+})->name('admin.dashboard');
