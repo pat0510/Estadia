@@ -8,21 +8,23 @@ use App\Http\Controllers\Admin\UsuarioController;
 | Web Routes
 |--------------------------------------------------------------------------
 |
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider and all of them will
-| be assigned to the "web" middleware group. Make something great!
+| Aquí se registran todas las rutas web de la aplicación.
+| Estas rutas son cargadas por el RouteServiceProvider y
+| estarán asignadas al grupo "web" middleware.
 |
 */
 
+// 🌐 Página principal del sitio
 Route::get('/', function () {
     return view('pages.home');
-});
+})->name('home');
 
-
-Route::prefix('admin')->name('admin.')->group(function () {
-    Route::resource('usuarios', UsuarioController::class);
-});
-
+// 🧭 Panel del administrador
 Route::get('/admin/dashboard', function () {
     return view('admin.dashboard');
 })->name('admin.dashboard');
+
+// 👥 CRUD de Usuarios (panel admin)
+Route::prefix('admin')->name('admin.')->group(function () {
+    Route::resource('usuarios', UsuarioController::class);
+});

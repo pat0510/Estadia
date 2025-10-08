@@ -10,22 +10,22 @@
     {!! Form::text('apellido', null, ['class' => 'form-control']) !!}
 </div>
 
-<!-- Correo Field -->
+<!-- Email Field (antes era Correo) -->
 <div class="form-group col-sm-6">
-    {!! Form::label('correo', 'Correo:') !!}
-    {!! Form::email('correo', null, ['class' => 'form-control', 'required']) !!}
+    {!! Form::label('email', 'Email:') !!}
+    {!! Form::email('email', null, ['class' => 'form-control', 'required']) !!}
 </div>
 
-<!-- contrasena Field -->
+<!-- Contraseña Field -->
 <div class="form-group col-sm-6">
-    {!! Form::label('contrasena', 'Contrasena:') !!}
+    {!! Form::label('contrasena', 'Contraseña:') !!}
     {!! Form::password('contrasena', ['class' => 'form-control', 'required', 'minlength' => 6]) !!}
 </div>
 
-<!-- Fechanacimiento Field -->
+<!-- Fecha de Nacimiento Field -->
 <div class="form-group col-sm-6">
-    {!! Form::label('fechaNacimiento', 'Fechanacimiento:') !!}
-    {!! Form::text('fechaNacimiento', null, ['class' => 'form-control','id'=>'fechaNacimiento']) !!}
+    {!! Form::label('fechaNacimiento', 'Fecha de Nacimiento:') !!}
+    {!! Form::text('fechaNacimiento', null, ['class' => 'form-control', 'id' => 'fechaNacimiento']) !!}
 </div>
 
 @push('page_scripts')
@@ -34,6 +34,7 @@
     </script>
 @endpush
 
+<!-- Sexo Field -->
 <div class="form-group col-sm-6">
     {!! Form::label('sexo', 'Sexo:') !!}
     {!! Form::select('sexo', [
@@ -43,13 +44,13 @@
     ], null, ['class' => 'form-control', 'placeholder' => 'Seleccione una opción']) !!}
 </div>
 
-
-<!-- Telefono Field -->
+<!-- Teléfono Field -->
 <div class="form-group col-sm-6">
-    {!! Form::label('telefono', 'Telefono:') !!}
+    {!! Form::label('telefono', 'Teléfono:') !!}
     {!! Form::text('telefono', null, ['class' => 'form-control']) !!}
 </div>
 
+<!-- Tipo de Usuario Field -->
 <div class="form-group col-sm-6">
     {!! Form::label('tipoUsuario', 'Tipo de Usuario:') !!}
     {!! Form::select('tipoUsuario', [
@@ -59,7 +60,7 @@
     ], null, ['class' => 'form-control', 'placeholder' => 'Seleccione tipo']) !!}
 </div>
 
-
+<!-- Estado de Cuenta Field -->
 <div class="form-group col-sm-6">
     {!! Form::label('estadoCuenta', 'Estado de Cuenta:') !!}
     {!! Form::select('estadoCuenta', [
