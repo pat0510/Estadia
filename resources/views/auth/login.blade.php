@@ -36,7 +36,7 @@
             <x-input-error :messages="$errors->get('contrasena')" class="mt-2" />
         </div>
 
-        <!-- Recordarme -->
+        <!-- Recordarme 
         <div class="block mt-4">
             <label for="remember_me" class="inline-flex items-center">
                 <input id="remember_me" type="checkbox"
@@ -44,7 +44,7 @@
                        name="remember">
                 <span class="ms-2 text-sm text-gray-600">{{ __('Recuérdame') }}</span>
             </label>
-        </div>
+        </div> -->
 
         <!-- Acciones -->
         <div class="flex items-center justify-end mt-4">
