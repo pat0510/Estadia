@@ -12,12 +12,12 @@ body {
 
 /* ====== Paleta y tokens MindWare ====== */
 :root{
-  --mw-primary: #1570ef;               /* azul principal */
+  --mw-primary: #91b8ee;               /* azul principal */
   --mw-bg-hero: radial-gradient(1200px 600px at 10% 10%, #e9f3ff 0%, #eef6ff 35%, #f6fbff 70%, #ffffff 100%);
   --mw-shadow-soft: 0 10px 30px rgba(21,112,239,.08);
 }
 
-/* HERO con degradado y curva inferior */
+/*  degradado y curva inferior */
 .hero-mw{
   background: var(--mw-bg-hero);
   position: relative;

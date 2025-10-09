@@ -10,10 +10,10 @@
     {!! Form::text('apellido', null, ['class' => 'form-control']) !!}
 </div>
 
-<!-- Correo Field -->
+<!-- email Field -->
 <div class="form-group col-sm-6">
-    {!! Form::label('correo', 'Correo:') !!}
-    {!! Form::email('correo', null, ['class' => 'form-control', 'required']) !!}
+    {!! Form::label('email', 'email:') !!}
+    {!! Form::email('email', null, ['class' => 'form-control', 'required']) !!}
 </div>
 
 <!-- contrasena Field -->

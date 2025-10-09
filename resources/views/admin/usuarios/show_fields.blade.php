@@ -10,10 +10,10 @@
     <p>{{ $usuarios->apellido }}</p>
 </div>
 
-<!-- Correo Field -->
+<!-- email Field -->
 <div class="col-sm-12">
-    {!! Form::label('correo', 'Correo:') !!}
-    <p>{{ $usuarios->correo }}</p>
+    {!! Form::label('email', 'email:') !!}
+    <p>{{ $usuarios->email }}</p>
 </div>
 
 <!-- Contrasena Field -->

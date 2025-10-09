@@ -5,7 +5,7 @@
                 <tr>
                     <th>Nombre</th>
                     <th>Apellido</th>
-                    <th>Correo</th>
+                    <th>email</th>
                     {{-- Por seguridad no mostramos la contraseña --}}
                     <th>Fecha de Nacimiento</th>
                     <th>Sexo</th>
@@ -20,7 +20,7 @@
                     <tr>
                         <td>{{ $usuario->nombre }}</td>
                         <td>{{ $usuario->apellido }}</td>
-                        <td>{{ $usuario->correo }}</td>
+                        <td>{{ $usuario->email }}</td>
                         <td>{{ $usuario->fechaNacimiento }}</td>
                         <td>{{ $usuario->sexo }}</td>
                         <td>{{ $usuario->telefono }}</td>

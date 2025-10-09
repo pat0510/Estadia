@@ -33,7 +33,7 @@
                 <h6 class="text-muted mb-1">
                     <i class="fas fa-envelope me-1 text-primary"></i>Correo electrónico
                 </h6>
-                <p class="fw-semibold text-dark">{{ $usuario->correo }}</p>
+                <p class="fw-semibold text-dark">{{ $usuario->email }}</p>
             </div>
 
             <div class="info-box mb-3">

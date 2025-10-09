@@ -25,7 +25,7 @@ class UsuarioController extends Controller
     {
         $request->validate([
             'nombre' => 'required|string|max:50',
-            'correo' => 'required|email|unique:Usuarios,correo',
+            'email' => 'required|email|unique:Usuarios,email',
             'contrasena' => 'required|string|min:6',
             'tipoUsuario' => 'required|in:administrador,medico,paciente',
             'estadoCuenta' => 'required|in:activo,inactivo'
@@ -34,7 +34,7 @@ class UsuarioController extends Controller
         $usuario = new Usuario();
         $usuario->nombre = $request->nombre;
         $usuario->apellido = $request->apellido;
-        $usuario->correo = $request->correo;
+        $usuario->email = $request->email;
         $usuario->contrasena = bcrypt($request->contrasena);
         $usuario->fechaNacimiento = $request->fechaNacimiento;
         $usuario->sexo = $request->sexo;
@@ -58,7 +58,7 @@ class UsuarioController extends Controller
 
         $request->validate([
             'nombre' => 'required|string|max:50',
-            'correo' => 'required|email|unique:Usuarios,correo,' . $usuario->idUsuario . ',idUsuario',
+            'email' => 'required|email|unique:Usuarios,email,' . $usuario->idUsuario . ',idUsuario',
             'tipoUsuario' => 'required|in:administrador,medico,paciente',
             'estadoCuenta' => 'required|in:activo,inactivo'
         ]);
@@ -66,7 +66,7 @@ class UsuarioController extends Controller
         $usuario->update([
             'nombre' => $request->nombre,
             'apellido' => $request->apellido,
-            'correo' => $request->correo,
+            'email' => $request->email,
             'fechaNacimiento' => $request->fechaNacimiento,
             'sexo' => $request->sexo,
             'telefono' => $request->telefono,
