@@ -6,13 +6,13 @@
             <div class="row mb-2">
                 <div class="col-sm-6">
                     <h1>
-Medicamentos Details
+Detalles del medicamento
                     </h1>
                 </div>
                 <div class="col-sm-6">
                     <a class="btn btn-default float-right"
-                       href="{{ route('medicamentos.index') }}">
-                                                    Back
+                       href="{{ route('admin.medicamentos.index') }}">
+                                                    Volver
                                             </a>
                 </div>
             </div>
@@ -23,7 +23,7 @@ Medicamentos Details
         <div class="card">
             <div class="card-body">
                 <div class="row">
-                    @include('medicamentos.show_fields')
+                    @include('admin.medicamentos.show_fields')
                 </div>
             </div>
         </div>

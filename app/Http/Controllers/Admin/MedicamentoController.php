@@ -55,7 +55,7 @@ class MedicamentoController extends Controller
             $data['imagenMedicamento'] = $path;
         }
 
-        Medicamento::create($data);
+        $this->medicamentosRepository->create($data);
 
         Flash::success('Medicamento creado correctamente.');
         return redirect()->route('admin.medicamentos.index');
@@ -79,17 +79,16 @@ class MedicamentoController extends Controller
     /**
      * Form de edición.
      */
-    public function edit($id)
-    {
-        $medicamento = $this->medicamentosRepository->find($id);
+   public function edit($id)
+        {
+            $medicamento = $this->medicamentosRepository->find($id);
 
-        if (empty($medicamento)) {
-            Flash::error('Medicamento no encontrado');
-            return redirect()->route('admin.medicamentos.index');
+            if (empty($medicamento)) {
+                Flash::error('Medicamento no encontrado');
+                return redirect()->route('admin.medicamentos.index');
+            }
+            return view('admin.medicamentos.edit', compact('medicamento'));
         }
-
-        return view('admin.medicamentos.edit', compact('medicamento'));
-    }
 
     /**
      * Actualizar (con posible reemplazo de imagen).

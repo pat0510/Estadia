@@ -35,5 +35,5 @@ Route::get('/paciente/dashboard', function () {
 
 
 Route::prefix('admin')->name('admin.')->group(function () {
-    Route::resource('medicamentos', MedicamentoController::class);
+    Route::resource('medicamentos', App\Http\Controllers\Admin\MedicamentoController::class);
 });

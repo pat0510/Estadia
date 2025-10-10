@@ -2,8 +2,7 @@
 
 namespace App\Repositories;
 
-use App\Models\Medicamento; // 👈 SINGULAR
-// no uses App\Models\Medicamentos (plural)
+use App\Models\Medicamento;
 
 class MedicamentosRepository extends BaseRepository
 {
@@ -17,7 +16,6 @@ class MedicamentosRepository extends BaseRepository
 
     public function model(): string
     {
-        // 👇 Debe devolver SIEMPRE el FQCN del MODELO correcto
         return Medicamento::class;
     }
 }
