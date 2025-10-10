@@ -2,26 +2,21 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Model;
-use Illuminate\Foundation\Auth\User as Authenticatable; // ✅ Para permitir login si se usa Breeze o Auth
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 
 class Usuario extends Authenticatable
 {
     use HasFactory, Notifiable;
 
-    protected $table = 'Usuarios';
+    protected $table = 'usuarios';
     protected $primaryKey = 'idUsuario';
-    public $incrementing = true;
-    public $timestamps = false;
 
-    /**
-     * Campos que pueden asignarse masivamente
-     */
     protected $fillable = [
         'nombre',
         'apellido',
-        'email',          // ✅ cambiado de 'correo' a 'email'
+        'email',
         'contrasena',
         'fechaNacimiento',
         'sexo',
@@ -30,15 +25,16 @@ class Usuario extends Authenticatable
         'estadoCuenta',
     ];
 
-    /**
-     * Campos que deben ocultarse (por ejemplo, contraseñas)
-     */
     protected $hidden = [
         'contrasena',
+        'remember_token',
     ];
 
+    public $timestamps = false;
+
     /**
-     * Si el modelo se usa para autenticación, define el campo de contraseña
+     * 🔐 Indica a Laravel que la contraseña está en la columna 'contrasena'
+     * (por defecto buscaría 'password')
      */
     public function getAuthPassword()
     {

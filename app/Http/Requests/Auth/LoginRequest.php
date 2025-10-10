@@ -34,25 +34,27 @@ class LoginRequest extends FormRequest
      * Autentica al usuario usando el campo 'contrasena' de la BD.
      */
     public function authenticate(): void
-    {
-        $this->ensureIsNotRateLimited();
+{
+    $this->ensureIsNotRateLimited();
 
-        // 🔁 Mapeamos 'contrasena' a 'password' para Auth::attempt()
-        $credentials = [
-            'email' => $this->email,
-            'password' => $this->contrasena,
-        ];
+    // Laravel espera 'email' y 'password' como claves,
+    // pero nuestro modelo usa 'email' y 'contrasena' en la BD.
+    $credentials = [
+        'email' => $this->email,
+        'password' => $this->password, // 👈 usa el campo del formulario (no 'contrasena')
+    ];
 
-        if (!Auth::attempt($credentials, $this->boolean('remember'))) {
-            RateLimiter::hit($this->throttleKey());
+    if (!Auth::attempt($credentials, $this->boolean('remember'))) {
+        RateLimiter::hit($this->throttleKey());
 
-            throw ValidationException::withMessages([
-                'email' => trans('auth.failed'),
-            ]);
-        }
-
-        RateLimiter::clear($this->throttleKey());
+        throw ValidationException::withMessages([
+            'email' => trans('auth.failed'),
+        ]);
     }
+
+    RateLimiter::clear($this->throttleKey());
+}
+
 
     /**
      * Control de bloqueo por intentos fallidos.

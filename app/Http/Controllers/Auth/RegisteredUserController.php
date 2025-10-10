@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
-use App\Models\User;
+use App\Models\Usuario; // ✅ Modelo real
 use App\Providers\RouteServiceProvider;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Http\RedirectResponse;
@@ -16,7 +16,7 @@ use Illuminate\View\View;
 class RegisteredUserController extends Controller
 {
     /**
-     * Display the registration view.
+     * Muestra la vista de registro
      */
     public function create(): View
     {
@@ -24,27 +24,37 @@ class RegisteredUserController extends Controller
     }
 
     /**
-     * Handle an incoming registration request.
-     *
-     * @throws \Illuminate\Validation\ValidationException
+     * Maneja una solicitud de registro entrante
      */
     public function store(Request $request): RedirectResponse
     {
         $request->validate([
-            'name' => ['required', 'string', 'max:255'],
-            'email' => ['required', 'string', 'lowercase', 'email', 'max:255', 'unique:'.User::class],
-            'password' => ['required', 'confirmed', Rules\Password::defaults()],
+            'nombre' => ['required', 'string', 'max:50'],
+            'apellido' => ['nullable', 'string', 'max:50'],
+            'email' => ['required', 'string', 'email', 'max:100', 'unique:usuarios,email'],
+            'contrasena' => ['required', 'confirmed', Rules\Password::defaults()],
+            'fechaNacimiento' => ['nullable', 'date'],
+            'sexo' => ['nullable', 'in:masculino,femenino,otro'],
+            'telefono' => ['nullable', 'string', 'max:20'],
+            'tipoUsuario' => ['required', 'in:administrador,medico,paciente'],
         ]);
 
-        $user = User::create([
-            'name' => $request->name,
-            'email' => $request->email,
-            'password' => Hash::make($request->password),
+        // ✅ Crea el usuario en tu tabla real
+        $usuario = Usuario::create([
+            'nombre' => $request->nombre,
+            'apellido' => $request->apellido,
+            'email' => $request->email, // 👈 coincide con tu base de datos
+            'contrasena' => Hash::make($request->contrasena), // 🔒 encriptado
+            'fechaNacimiento' => $request->fechaNacimiento,
+            'sexo' => $request->sexo,
+            'telefono' => $request->telefono,
+            'tipoUsuario' => $request->tipoUsuario,
+            'estadoCuenta' => 'activo',
         ]);
 
-        event(new Registered($user));
-
-        Auth::login($user);
+        // ✅ Evento y login automáticos
+        event(new Registered($usuario));
+        Auth::login($usuario);
 
         return redirect(RouteServiceProvider::HOME);
     }
