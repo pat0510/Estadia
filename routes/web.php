@@ -17,7 +17,7 @@ use App\Http\Controllers\Admin\UsuarioController;
 
 /* 🌐 Página principal */
 Route::get('/', function () {
-    return view('pages.home'); // Tu página principal personalizada
+    return view('welcome'); // Tu página principal personalizada
 })->name('home');
 
 /* 🧭 Dashboard general (solo ejemplo, se redirige según tipo de usuario al iniciar sesión) */
