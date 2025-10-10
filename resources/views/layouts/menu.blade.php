@@ -5,3 +5,10 @@
         <p>Usuarios</p>
     </a>
 </li>
+
+<li class="nav-item">
+    <a href="{{ route('medicamentos.index') }}" class="nav-link {{ Request::is('medicamentos*') ? 'active' : '' }}">
+        <i class="nav-icon fas fa-home"></i>
+        <p>Medicamentos</p>
+    </a>
+</li>

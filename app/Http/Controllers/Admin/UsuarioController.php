@@ -5,6 +5,9 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\Usuario;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
+use App\Http\Requests\CreateUsuariosRequest;
+use App\Http\Requests\UpdateUsuariosRequest;
 
 class UsuarioController extends Controller
 {
@@ -13,6 +16,7 @@ class UsuarioController extends Controller
      */
     public function index(Request $request)
     {
+<<<<<<< HEAD
         $usuarios = Usuario::paginate(10); // Puedes ajustar la cantidad
         return view('admin.usuarios.index')->with('usuarios', $usuarios);
     }
@@ -20,12 +24,19 @@ class UsuarioController extends Controller
     /**
      * Mostrar formulario para crear usuario
      */
+=======
+        $usuarios = Usuario::paginate(10);
+        return view('admin.usuarios.index', compact('usuarios'));
+    }
+
+>>>>>>> upstream/main
     public function create()
     {
         return view('admin.usuarios.create');
     }
 
     /**
+<<<<<<< HEAD
      * Guardar un nuevo usuario en la base de datos
      */
     public function store(Request $request)
@@ -53,6 +64,31 @@ class UsuarioController extends Controller
         return redirect()
             ->route('admin.usuarios.index')
             ->with('success', 'Usuario registrado correctamente.');
+=======
+     * Guarda un usuario nuevo.
+     * - Valida con CreateUsuariosRequest
+     * - Fuerza estadoCuenta = activo si no viene
+     * - Hashea la contraseña
+     */
+    public function store(CreateUsuariosRequest $request)
+    {
+        $data = $request->validated();
+
+        // Asegurar estado por defecto
+        $data['estadoCuenta'] = $data['estadoCuenta'] ?? 'activo';
+
+        // Hashear contraseña si viene (en create es required por las rules)
+        if (!empty($data['contrasena'])) {
+            $data['contrasena'] = Hash::make($data['contrasena']);
+        }
+
+        // Crea usando fillable del modelo
+        Usuario::create($data);
+
+        return redirect()
+            ->route('admin.usuarios.index')
+            ->with('success', 'Usuario creado correctamente.');
+>>>>>>> upstream/main
     }
 
     /**
@@ -65,6 +101,7 @@ class UsuarioController extends Controller
     }
 
     /**
+<<<<<<< HEAD
      * Actualizar usuario existente
      */
     public function update(Request $request, $id)
@@ -95,6 +132,30 @@ class UsuarioController extends Controller
             $usuario->save();
         }
 
+=======
+     * Actualiza un usuario existente.
+     * - Valida con UpdateUsuariosRequest (email único ignorando el propio)
+     * - La contraseña es opcional; si viene, se hashea
+     * - Si no quieres que se edite estadoCuenta desde el form, lo ignoramos
+     */
+    public function update(UpdateUsuariosRequest $request, $id)
+    {
+        $usuario = Usuario::findOrFail($id);
+
+        $data = $request->validated();
+
+        // Si no quieres permitir edición del estado desde este form:
+        unset($data['estadoCuenta']);
+
+        if (!empty($data['contrasena'])) {
+            $data['contrasena'] = Hash::make($data['contrasena']);
+        } else {
+            unset($data['contrasena']);
+        }
+
+        $usuario->update($data);
+
+>>>>>>> upstream/main
         return redirect()
             ->route('admin.usuarios.index')
             ->with('success', 'Usuario actualizado correctamente.');
