@@ -36,7 +36,7 @@
             <x-input-error :messages="$errors->get('contrasena')" class="mt-2" />
         </div>
 
-        <!-- Recordarme 
+        <!-- Boton de recordar 
         <div class="block mt-4">
             <label for="remember_me" class="inline-flex items-center">
                 <input id="remember_me" type="checkbox"
