@@ -6,9 +6,11 @@
   <title>@yield('title', 'MindWare')</title>
 
   {{-- Carga de CSS y JS con Vite --}}
-  @vite(['resources/css/app.css','resources/js/app.js'])
+  @vite(['resources/css/app.css', 'resources/js/app.js', 'resources/css/paciente.css'])
 
-   <link rel="stylesheet" href="{{ asset('css/crud-style.css') }}">
+  <link rel="stylesheet" href="{{ asset('css/crud-style.css') }}">
+  <link rel="stylesheet" href="{{ asset('css/paciente.css') }}">
+
 
 </head>
 <body class="bg-light">

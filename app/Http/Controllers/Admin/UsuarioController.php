@@ -5,45 +5,47 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\Usuario;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
+use App\Http\Requests\CreateUsuariosRequest;
+use App\Http\Requests\UpdateUsuariosRequest;
 
 class UsuarioController extends Controller
 {
     public function index(Request $request)
     {
-        // 10 registros por página (puedes ajustar el número)
         $usuarios = Usuario::paginate(10);
-        return view('admin.usuarios.index')->with('usuarios', $usuarios);
+        return view('admin.usuarios.index', compact('usuarios'));
     }
-
 
     public function create()
     {
         return view('admin.usuarios.create');
     }
 
-    public function store(Request $request)
+    /**
+     * Guarda un usuario nuevo.
+     * - Valida con CreateUsuariosRequest
+     * - Fuerza estadoCuenta = activo si no viene
+     * - Hashea la contraseña
+     */
+    public function store(CreateUsuariosRequest $request)
     {
-        $request->validate([
-            'nombre' => 'required|string|max:50',
-            'email' => 'required|email|unique:Usuarios,email',
-            'contrasena' => 'required|string|min:6',
-            'tipoUsuario' => 'required|in:administrador,medico,paciente',
-            'estadoCuenta' => 'required|in:activo,inactivo'
-        ]);
+        $data = $request->validated();
 
-        $usuario = new Usuario();
-        $usuario->nombre = $request->nombre;
-        $usuario->apellido = $request->apellido;
-        $usuario->email = $request->email;
-        $usuario->contrasena = bcrypt($request->contrasena);
-        $usuario->fechaNacimiento = $request->fechaNacimiento;
-        $usuario->sexo = $request->sexo;
-        $usuario->telefono = $request->telefono;
-        $usuario->tipoUsuario = $request->tipoUsuario;
-        $usuario->estadoCuenta = $request->estadoCuenta;
-        $usuario->save();
+        // Asegurar estado por defecto
+        $data['estadoCuenta'] = $data['estadoCuenta'] ?? 'activo';
 
-        return redirect()->route('admin.usuarios.index')->with('success', 'Usuario registrado correctamente.');
+        // Hashear contraseña si viene (en create es required por las rules)
+        if (!empty($data['contrasena'])) {
+            $data['contrasena'] = Hash::make($data['contrasena']);
+        }
+
+        // Crea usando fillable del modelo
+        Usuario::create($data);
+
+        return redirect()
+            ->route('admin.usuarios.index')
+            ->with('success', 'Usuario creado correctamente.');
     }
 
     public function edit($id)
@@ -52,45 +54,45 @@ class UsuarioController extends Controller
         return view('admin.usuarios.edit', compact('usuario'));
     }
 
-    public function update(Request $request, $id)
+    /**
+     * Actualiza un usuario existente.
+     * - Valida con UpdateUsuariosRequest (email único ignorando el propio)
+     * - La contraseña es opcional; si viene, se hashea
+     * - Si no quieres que se edite estadoCuenta desde el form, lo ignoramos
+     */
+    public function update(UpdateUsuariosRequest $request, $id)
     {
         $usuario = Usuario::findOrFail($id);
 
-        $request->validate([
-            'nombre' => 'required|string|max:50',
-            'email' => 'required|email|unique:Usuarios,email,' . $usuario->idUsuario . ',idUsuario',
-            'tipoUsuario' => 'required|in:administrador,medico,paciente',
-            'estadoCuenta' => 'required|in:activo,inactivo'
-        ]);
+        $data = $request->validated();
 
-        $usuario->update([
-            'nombre' => $request->nombre,
-            'apellido' => $request->apellido,
-            'email' => $request->email,
-            'fechaNacimiento' => $request->fechaNacimiento,
-            'sexo' => $request->sexo,
-            'telefono' => $request->telefono,
-            'tipoUsuario' => $request->tipoUsuario,
-            'estadoCuenta' => $request->estadoCuenta,
-        ]);
+        // Si no quieres permitir edición del estado desde este form:
+        unset($data['estadoCuenta']);
 
-        if ($request->filled('contrasena')) {
-            $usuario->contrasena = bcrypt($request->contrasena);
-            $usuario->save();
+        if (!empty($data['contrasena'])) {
+            $data['contrasena'] = Hash::make($data['contrasena']);
+        } else {
+            unset($data['contrasena']);
         }
 
-        return redirect()->route('admin.usuarios.index')->with('success', 'Usuario actualizado correctamente.');
+        $usuario->update($data);
+
+        return redirect()
+            ->route('admin.usuarios.index')
+            ->with('success', 'Usuario actualizado correctamente.');
     }
 
     public function show($id)
     {
-        $usuario = \App\Models\Usuario::findOrFail($id); // usa tu PK
+        $usuario = Usuario::findOrFail($id);
         return view('admin.usuarios.show', compact('usuario'));
     }
 
     public function destroy($id)
     {
         Usuario::destroy($id);
-        return redirect()->route('admin.usuarios.index')->with('success', 'Usuario eliminado correctamente.');
+        return redirect()
+            ->route('admin.usuarios.index')
+            ->with('success', 'Usuario eliminado correctamente.');
     }
 }

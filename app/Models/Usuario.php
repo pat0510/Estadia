@@ -2,29 +2,31 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 class Usuario extends Model
 {
-    use HasFactory;
-
-    protected $table = 'Usuarios';
-    protected $primaryKey = 'idUsuario';
-    public $incrementing = true;
-    public $timestamps = false;
+    protected $table = 'Usuarios';          // Nombre real de tu tabla
+    protected $primaryKey = 'idUsuario';    // Llave primaria
+    public $timestamps = false;             // 🔹 Desactiva created_at y updated_at
 
     protected $fillable = [
         'nombre',
         'apellido',
-        'correo',
+        'email',
         'contrasena',
         'fechaNacimiento',
         'sexo',
         'telefono',
         'tipoUsuario',
-        'estadoCuenta'
+        'estadoCuenta',
     ];
 
-    protected $hidden = ['contrasena'];
+    protected $attributes = [
+        'estadoCuenta' => 'activo',
+    ];
+
+    protected $casts = [
+        'fechaNacimiento' => 'date',
+    ];
 }

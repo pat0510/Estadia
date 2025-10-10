@@ -21,7 +21,7 @@
                         <td>{{ $usuario->nombre }}</td>
                         <td>{{ $usuario->apellido }}</td>
                         <td>{{ $usuario->email }}</td>
-                        <td>{{ $usuario->fechaNacimiento }}</td>
+                        <td>{{ optional($usuario->fechaNacimiento)->format('Y-m-d') }}</td>
                         <td>{{ $usuario->sexo }}</td>
                         <td>{{ $usuario->telefono }}</td>
                         <td>{{ $usuario->tipoUsuario }}</td>

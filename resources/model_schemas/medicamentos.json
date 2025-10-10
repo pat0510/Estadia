@@ -1,0 +1,7 @@
+[
+  { "name": "nombre",            "dbType": "string,100", "htmlType": "text",     "validations": "required" },
+  { "name": "presentacion",      "dbType": "string,50",  "htmlType": "text" },
+  { "name": "indicaciones",      "dbType": "text",       "htmlType": "textarea" },
+  { "name": "efectosSecundarios","dbType": "text",       "htmlType": "textarea" },
+  { "name": "imagenMedicamento", "dbType": "string,255", "htmlType": "file" }
+]

@@ -163,6 +163,7 @@ body {
 /* ====== GRADIENTE DE TITULO ====== */
 .mw-title-gradient {
   background: linear-gradient(90deg, #b5c8e1, #90aacc);
-  -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
+
+

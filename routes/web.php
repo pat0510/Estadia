@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\UsuarioController;
+use App\Http\Controllers\Admin\MedicamentoController;
 
 /*
 |--------------------------------------------------------------------------
@@ -26,3 +27,13 @@ Route::prefix('admin')->name('admin.')->group(function () {
 Route::get('/admin/dashboard', function () {
     return view('admin.dashboard');
 })->name('admin.dashboard');
+
+
+Route::get('/paciente/dashboard', function () {
+    return view('paciente.dashboard');
+})->name('paciente.dashboard');
+
+
+Route::prefix('admin')->name('admin.')->group(function () {
+    Route::resource('medicamentos', MedicamentoController::class);
+});
